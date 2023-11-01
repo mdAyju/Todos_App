@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Table{% endblock title %}
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-sm-10 offset-1">
+            <h3 class="text-center text-capitalize mb-4">sample table</h3>
+            <table class="table table-striped border p-2">
+                <thead>
+                    <tr>
+                        <th class="text-capitalize">Sno</th>
+                        <th class="text-capitalize">name</th>
+                        <th class="text-capitalize">locality</th>
+                        <th class="text-capitalize">mobile</th>
+                        <th class="text-capitalize">state</th>
+                        <th class="text-capitalize">zipcode</th>
+                        <td ><a class="btn btn-success col-sm-12" href="{% url 'enter'%}">Add</a></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in  all%}
+                    <tr>
+                        <td class="text-capitalize">{{forloop.counter}}</td>
+                        <td class="text-capitalize">{{item.name}}</td>
+                        <td class="text-capitalize">{{item.locality}}</td>
+                        <td class="text-capitalize">{{item.mobile}}</td>
+                        <td class="text-capitalize">{{item.state}}</td>
+                        <td class="text-capitalize">{{item.zipcode}}</td>
+                        <td><button class="btn btn-danger delete" pid={{item.id}}>delete</button></td>
+                        <td ><a class="btn btn-primary " href="{% url 'edit' pk=item.id%}">Edit</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

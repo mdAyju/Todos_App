@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Enter{% endblock title %}
+{% block content %}
+
+{% if form.non_field_errors %}
+    {% for error in form.non_field_errors %}
+    <div class="alert alert-danger">{{error}}</div>
+    {% endfor %}
+{% endif %}
+
+{% if messages %}
+    {% for msg in messages %}
+    <div class="alert alert-{{msg.tags}}">{{msg}}</div>
+    {% endfor %}
+{% endif %}
+<div class="container-fluid back">
+    <div class="row">
+        <div class="col-sm-6 offset-md-3 mt-3 ">
+            <div class="text-center fw-bold mb-3">Enter Details</div>
+            <form action=""  method='post' novalidate class="shadow normal p-3">
+                {% csrf_token %}
+                {% for fm in form %}
+                    {{fm.label_tag}} {{fm}} <small class="text-danger ">{{fm.errors|striptags}}</small><br>
+                {% endfor %}
+                <div class="d-flex justify-content-between">
+                    <button class="btn btn-primary">submit</button>
+                    <a href="{%url 'show'%}" class="btn btn-danger">Back</a>
+                </div>
+                    <br>
+            </form>
+            <br>
+        </div>
+    </div>
+</div>
+{% endblock content %}
