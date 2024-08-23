@@ -4,6 +4,7 @@ from app. models import DataModel
 from app.forms import DataForm
 from django.contrib import messages
 from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
 
 def show(request):
